@@ -1,3 +1,7 @@
-function showMessage(){
-    alert("Welcome to Village Family Management System");
+function openLogin() {
+    document.getElementById("loginBox").style.display = "flex";
+}
+
+function closeLogin() {
+    document.getElementById("loginBox").style.display = "none";
 }

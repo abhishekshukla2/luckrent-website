@@ -1,75 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Village Family Management System</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Navbar</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<nav class="navbar">
-    <div class="logo">
-        <i class="fa-solid fa-house"></i>
-        Village System
-    </div>
+  <nav class="navbar">
+    <div class="logo">MyLibrary</div>
 
     <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Families</a></li>
-        <li><a href="#">Search</a></li>
-        <li><a href="#">Contact</a></li>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Books</a></li>
+      <li><a href="#">Categories</a></li>
+      <li><a href="#">Issue Book</a></li>
+      <li><a href="#">Contact</a></li>
     </ul>
-</nav>
+     <button class="login-btn" onclick="openLogin()">Login</button>
+  </nav>
 
-<section class="hero">
-
-    <div class="hero-text">
-        <h1>Village Family Management System</h1>
-
-        <p>
-            Manage House Numbers, Family Details,
-            Mobile Numbers and Total Members Easily.
-        </p>
-
-        <button onclick="showMessage()">
-            Get Started
-        </button>
-    </div>
-
-    <div class="hero-image">
-        <img
-        src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800"
-        alt="Village">
-    </div>
-
-</section>
-
-<section class="features">
-
-    <div class="card">
-        <i class="fa-solid fa-house"></i>
-        <h3>House Records</h3>
-        <p>Manage all house numbers.</p>
-    </div>
-
-    <div class="card">
-        <i class="fa-solid fa-users"></i>
-        <h3>Family Details</h3>
-        <p>Store complete family information.</p>
-    </div>
-
-    <div class="card">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <h3>Quick Search</h3>
-        <p>Find records instantly.</p>
-    </div>
-
-</section>
-
-<script src="script.js"></script>
-
+  <!-- Login Popup Box -->
+  <div class="login-popup" id="loginBox">
+    <div class="login-box">
+      <span class="close-btn" onclick="closeLogin()">×</span>
+      <h2>Login</h2>
+      <input type="text" placeholder="Enter Username">
+      <input type="password" placeholder="Enter Password">
+      <button>Login</button>
+      <script src="abhi.js"></script>
 </body>
 </html>
