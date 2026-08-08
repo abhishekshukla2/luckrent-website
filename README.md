@@ -206,11 +206,10 @@ CSS animations, hover effects, cards, buttons, and responsive layouts are used t
 
 **LuckRent**
 
-📍 Gomti Nagar, Lucknow, Uttar Pradesh
+📍 Basti Vikramjot Talagaon
 
-📞 +91 98765 43210
+📞 +91 8081597811
 
-✉️ [hello@luckrent.com](mailto:hello@luckrent.com)
 
 ---
 
