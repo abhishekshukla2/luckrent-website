@@ -1,768 +1,1998 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Amazon Clone</title>
+<title>LuckRent - Home Rental in Lucknow</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
 
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f6f7f5;
+    color:#17251e;
+    overflow-x:hidden;
+}
+
+a{
+    text-decoration:none;
+}
+
+button{
+    font-family:inherit;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:999;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+    box-shadow:0 3px 20px rgba(0,0,0,.08);
+}
+
+.navbar{
+    max-width:1200px;
+    margin:auto;
+    height:75px;
+    padding:0 25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:29px;
+    font-weight:800;
+    color:#183c2b;
+}
+
+.logo span{
+    color:#d39a35;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    color:#37443d;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#d39a35;
+}
+
+.nav-btn{
+    background:#183c2b;
+    color:white;
+    padding:12px 22px;
+    border-radius:25px;
+    transition:.3s;
+}
+
+.nav-btn:hover{
+    background:#d39a35;
+    transform:translateY(-2px);
+}
+
+/* =========================
+   COMMON
+========================= */
+
+section{
+    scroll-margin-top:80px;
+}
+
+.small-title{
+    color:#c58c2f;
+    font-size:13px;
+    letter-spacing:2px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:0 25px;
+}
+
+/* =========================
+   HOME
+========================= */
+
+#home{
+    min-height:100vh;
+    padding-top:75px;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(246,247,245,.98) 0%,
+        rgba(246,247,245,.9) 45%,
+        rgba(246,247,245,.15) 100%
+    ),
+    url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1800&q=85");
+
+    background-size:cover;
+    background-position:center;
+}
+
+.hero{
+    max-width:1200px;
+    min-height:calc(100vh - 75px);
+    margin:auto;
+    padding:70px 25px;
+
+    display:flex;
+    align-items:center;
+}
+
+.hero-content{
+    max-width:650px;
+    animation:slideLeft 1s ease;
+}
+
+.hero h1{
+    font-family:Georgia,serif;
+    font-size:65px;
+    line-height:1.08;
+    margin-bottom:22px;
+}
+
+.hero h1 span{
+    color:#d39a35;
+}
+
+.hero-text{
+    color:#657169;
+    font-size:17px;
+    line-height:1.8;
+    max-width:560px;
+}
+
+/* SEARCH */
+
+.search-box{
+    margin-top:35px;
+    padding:18px;
+
+    background:white;
+    border-radius:16px;
+
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 120px;
+    gap:10px;
+
+    box-shadow:0 15px 45px rgba(0,0,0,.15);
+
+    animation:floatUp 1s ease .3s both;
+}
+
+.search-item{
+    padding:5px 12px;
+    border-right:1px solid #ddd;
+}
+
+.search-item label{
+    display:block;
+    font-size:12px;
+    color:#888;
+    margin-bottom:6px;
+}
+
+.search-item select{
+    border:0;
+    outline:0;
+    width:100%;
+    background:white;
+    font-weight:bold;
+}
+
+.search-btn{
+    border:0;
+    border-radius:10px;
+    background:#d39a35;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.search-btn:hover{
+    background:#b67d20;
+    transform:scale(1.03);
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    background:#183c2b;
+    color:white;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    text-align:center;
+    padding:45px 20px;
+}
+
+.stat h2{
+    color:#e0ad53;
+    font-size:32px;
+    margin-bottom:5px;
+}
+
+.stat p{
+    color:#c9d5ce;
+}
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section{
+    padding:90px 0;
+}
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:35px;
+}
+
+.section-title h2{
+    font-family:Georgia,serif;
+    font-size:42px;
+}
+
+.view-all{
+    color:#b27b25;
+    font-weight:bold;
+}
+
+/* =========================
+   PROPERTY CARDS
+========================= */
+
+.property-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.property-card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+
+    box-shadow:0 6px 25px rgba(0,0,0,.07);
+
+    transition:.4s;
+}
+
+.property-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 45px rgba(0,0,0,.14);
+}
+
+.property-img{
+    height:240px;
+    background-size:cover;
+    background-position:center;
+    position:relative;
+}
+
+.property-img span{
+    position:absolute;
+    top:15px;
+    left:15px;
+
+    padding:7px 13px;
+    border-radius:20px;
+
+    background:#d39a35;
+    color:white;
+
+    font-size:12px;
+    font-weight:bold;
+}
+
+.img1{
+    background-image:url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80");
+}
+
+.img2{
+    background-image:url("https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80");
+}
+
+.img3{
+    background-image:url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80");
+}
+
+.img4{
+    background-image:url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80");
+}
+
+.img5{
+    background-image:url("https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=900&q=80");
+}
+
+.img6{
+    background-image:url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80");
+}
+
+.property-info{
+    padding:22px;
+}
+
+.location{
+    color:#b27b25;
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.property-info h3{
+    font-size:20px;
+    margin-bottom:15px;
+}
+
+.details{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    color:#777;
+    font-size:12px;
+}
+
+.price{
+    border-top:1px solid #eee;
+    margin-top:20px;
+    padding-top:18px;
+}
+
+.price strong{
+    color:#183c2b;
+    font-size:22px;
+}
+
+.price small{
+    color:#888;
+}
+
+.view-btn{
+    width:100%;
+    margin-top:16px;
+    padding:12px;
+
+    border:1px solid #183c2b;
+    border-radius:8px;
+
+    background:white;
+    color:#183c2b;
+
+    cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.view-btn:hover{
+    background:#183c2b;
+    color:white;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about{
+    background:#edf2ee;
+}
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.about-image{
+    height:480px;
+    border-radius:20px;
+
+    background:url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=80");
+
+    background-size:cover;
+    background-position:center;
+
+    animation:floating 4s infinite ease-in-out;
+}
+
+.about-content h2{
+    font-family:Georgia,serif;
+    font-size:45px;
+    margin-bottom:20px;
+}
+
+.about-content p{
+    color:#657169;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.check{
+    display:flex;
+    gap:12px;
+    margin:15px 0;
+    font-weight:bold;
+}
+
+.check span{
+    color:#d39a35;
+}
+
+/* =========================
+   PROPERTIES PAGE SECTION
+========================= */
+
+#properties{
+    padding-top:120px;
+    background:#f7f8f6;
+}
+
+.page-title{
+    text-align:center;
+    padding:70px 20px;
+    background:#183c2b;
+    color:white;
+}
+
+.page-title h1{
+    font-family:Georgia,serif;
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.page-title p{
+    color:#cbd7d0;
+}
+
+.filters{
+    max-width:1100px;
+    margin:-30px auto 40px;
+
+    background:white;
+    padding:20px;
+
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr) 130px;
+    gap:12px;
+}
+
+.filters select{
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    outline:none;
+}
+
+.filter-button{
+    border:0;
+    border-radius:8px;
+    background:#d39a35;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+#contact{
+    background:#fff;
+    padding-top:110px;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+}
+
+.contact-left h2{
+    font-family:Georgia,serif;
+    font-size:45px;
+    margin-bottom:20px;
+}
+
+.contact-left > p{
+    color:#657169;
+    line-height:1.8;
+}
+
+.contact-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-top:30px;
+}
+
+.contact-icon{
+    width:50px;
+    height:50px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+    background:#e8f0eb;
+
+    font-size:20px;
+}
+
+.contact-item h4{
+    margin-bottom:5px;
+}
+
+.contact-item p{
+    color:#777;
+}
+
+.contact-form{
+    background:#f6f8f6;
+    padding:35px;
+    border-radius:18px;
+}
+
+.contact-form h2{
+    font-family:Georgia,serif;
+    font-size:32px;
+    margin-bottom:25px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+    padding:14px;
+
+    border:1px solid #ddd;
+    border-radius:8px;
+
+    outline:none;
+    font-family:inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+    border-color:#d39a35;
+}
+
+.form-button{
+    width:100%;
+    padding:14px;
+
+    border:0;
+    border-radius:8px;
+
+    background:#183c2b;
+    color:white;
+
+    font-weight:bold;
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.form-button:hover{
+    background:#d39a35;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+    max-width:1150px;
+    margin:30px auto 90px;
+
+    padding:60px;
+
+    background:#183c2b;
+    color:white;
+
+    border-radius:25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.cta h2{
+    font-family:Georgia,serif;
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.cta p{
+    color:#c8d4cd;
+}
+
+.cta-button{
+    background:#d39a35;
+    color:white;
+    padding:15px 25px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#10271c;
+    color:white;
+    padding:60px 25px 20px;
+}
+
+.footer-grid{
+    max-width:1150px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:50px;
+}
+
+.footer-grid h4{
+    margin-bottom:15px;
+}
+
+.footer-grid p{
+    color:#aebbb3;
+    line-height:1.7;
+}
+
+.footer-links a{
+    display:block;
+    color:#aebbb3;
+    margin:10px 0;
+}
+
+.footer-links a:hover{
+    color:#d39a35;
+}
+
+.copyright{
+    max-width:1150px;
+    margin:45px auto 0;
+
+    padding-top:20px;
+
+    border-top:1px solid #294236;
+
+    text-align:center;
+    color:#829189;
+    font-size:13px;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes slideLeft{
+
+    from{
+        opacity:0;
+        transform:translateX(-60px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+@keyframes floatUp{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes floating{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+    .nav-links{
+        gap:15px;
+    }
+
+    .nav-btn{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:50px;
+    }
+
+    .property-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .about-grid,
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+        gap:30px;
+    }
+
+    .filters{
+        grid-template-columns:1fr 1fr;
+        margin-left:20px;
+        margin-right:20px;
+    }
+
+    .cta{
+        margin-left:20px;
+        margin-right:20px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .navbar{
+        height:auto;
+        padding:18px;
+        flex-wrap:wrap;
+        gap:15px;
+    }
+
+    .logo{
+        font-size:25px;
+    }
+
+    .nav-links{
+        order:3;
+        width:100%;
+        justify-content:center;
+    }
+
+    .nav-links a{
+        font-size:13px;
+    }
+
+    #home{
+        padding-top:110px;
+    }
+
+    .hero{
+        padding:50px 20px;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .hero-text{
+        font-size:15px;
+    }
+
+    .search-box{
+        grid-template-columns:1fr;
+    }
+
+    .search-item{
+        border-right:0;
+        border-bottom:1px solid #eee;
+        padding:12px;
+    }
+
+    .search-btn{
+        height:50px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        padding:30px 10px;
+    }
+
+    .stat h2{
+        font-size:25px;
+    }
+
+    .section{
+        padding:60px 20px;
+    }
+
+    .section-title{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .section-title h2{
+        font-size:32px;
+    }
+
+    .property-grid{
+        grid-template-columns:1fr;
+    }
+
+    .about-image{
+        height:350px;
+    }
+
+    .about-content h2,
+    .contact-left h2{
+        font-size:35px;
+    }
+
+    .page-title h1{
+        font-size:40px;
+    }
+
+    .filters{
+        grid-template-columns:1fr;
+    }
+
+    .cta{
+        flex-direction:column;
+        align-items:flex-start;
+        padding:35px 25px;
+        gap:25px;
+    }
+
+    .cta h2{
+        font-size:30px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
+}
+
+</style>
 </head>
-
 
 <body>
 
 
-<!-- TOP OFFER BAR -->
-
-<div class="offer-bar">
-
-🔥 Mega Sale! Up to 70% OFF | Free Delivery Available
-
-</div>
-
-
-
-
-
-<!-- NAVBAR -->
+<!-- =====================================
+     NAVBAR
+===================================== -->
 
 <header>
 
+<nav class="navbar">
 
-<div class="logo">
+    <a href="#home" class="logo">
+        Luck<span>Rent</span>
+    </a>
 
-<h1>
-amazon
-</h1>
+    <div class="nav-links">
 
-</div>
+        <a href="#home">Home</a>
 
+        <a href="#properties">Properties</a>
 
+        <a href="#about">About</a>
 
-<div class="location">
+        <a href="#contact">Contact</a>
 
-<p>
-Deliver to
-</p>
+    </div>
 
-<h4>
-📍 India
-</h4>
+    <a href="#contact" class="nav-btn">
+        List Property
+    </a>
 
-</div>
-
-
-
-
-<div class="search">
-
-
-<select>
-
-<option>
-All
-</option>
-
-<option>
-Electronics
-</option>
-
-<option>
-Fashion
-</option>
-
-</select>
-
-
-
-<input 
-type="text"
-placeholder="Search Amazon">
-
-
-<button>
-🔍
-</button>
-
-
-</div>
-
-
-
-
-
-<div class="account">
-
-
-<p>
-Hello, Abhishek
-</p>
-
-
-<h4>
-Account & Lists
-</h4>
-
-
-</div>
-
-
-
-
-<div class="orders">
-
-
-<p>
-Returns
-</p>
-
-
-<h4>
-& Orders
-</h4>
-
-
-</div>
-
-
-
-
-<div class="cart">
-
-🛒 Cart
-
-</div>
-
-
+</nav>
 
 </header>
 
 
+<!-- =====================================
+     HOME
+===================================== -->
 
+<section id="home">
 
+<div class="hero">
 
+<div class="hero-content">
 
-
-<!-- MENU -->
-
-
-<nav>
-
-
-<a href="#">
-All
-</a>
-
-
-<a href="#">
-Today's Deals
-</a>
-
-
-<a href="#">
-Electronics
-</a>
-
-
-<a href="#">
-Fashion
-</a>
-
-
-<a href="#">
-Mobiles
-</a>
-
-
-<a href="#">
-Books
-</a>
-
-
-<a href="#">
-Sell
-</a>
-
-
-</nav>
-
-
-
-
-
-
-
-
-
-<!-- HERO SECTION -->
-
-
-<section class="hero">
-
+<p class="small-title">
+WELCOME TO LUCKRENT
+</p>
 
 <h1>
-Welcome To Amazon Clone
+Find Your Perfect
+<span>Home in Lucknow</span>
 </h1>
 
-
-<p>
-Shopping Made Easy
+<p class="hero-text">
+Discover beautiful apartments, houses, villas and flats
+for rent in the best locations of Lucknow.
+Find a home that matches your lifestyle and budget.
 </p>
 
 
-<button>
-Shop Now
+<div class="search-box">
+
+<div class="search-item">
+
+<label>LOCATION</label>
+
+<select>
+
+<option>Lucknow</option>
+
+<option>Gomti Nagar</option>
+
+<option>Hazratganj</option>
+
+<option>Indira Nagar</option>
+
+<option>Aliganj</option>
+
+</select>
+
+</div>
+
+
+<div class="search-item">
+
+<label>PROPERTY TYPE</label>
+
+<select>
+
+<option>Any Type</option>
+
+<option>Apartment</option>
+
+<option>House</option>
+
+<option>Villa</option>
+
+<option>Studio</option>
+
+</select>
+
+</div>
+
+
+<div class="search-item">
+
+<label>BUDGET</label>
+
+<select>
+
+<option>Any Budget</option>
+
+<option>₹5,000 - ₹10,000</option>
+
+<option>₹10,000 - ₹20,000</option>
+
+<option>₹20,000 - ₹30,000</option>
+
+<option>₹30,000+</option>
+
+</select>
+
+</div>
+
+
+<button class="search-btn"
+onclick="searchProperty()">
+
+Search
+
 </button>
 
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
+<!-- =====================================
+     STATS
+===================================== -->
+
+<div class="stats">
+
+<div class="stat">
+
+<h2>250+</h2>
+
+<p>Properties</p>
+
+</div>
 
 
+<div class="stat">
+
+<h2>120+</h2>
+
+<p>Happy Tenants</p>
+
+</div>
 
 
+<div class="stat">
+
+<h2>25+</h2>
+
+<p>Locations</p>
+
+</div>
 
 
+<div class="stat">
 
-<!-- CATEGORY -->
+<h2>4.9 ★</h2>
 
+<p>Customer Rating</p>
 
-<section class="category">
+</div>
 
-
-<h2>
-Shop By Category
-</h2>
-
+</div>
 
 
-<div class="category-box">
+<!-- =====================================
+     PROPERTIES
+===================================== -->
+
+<section id="properties">
+
+<div class="page-title">
+
+<p class="small-title">
+OUR PROPERTIES
+</p>
+
+<h1>
+Find Your Next Home
+</h1>
+
+<p>
+Beautiful homes available across Lucknow
+</p>
+
+</div>
 
 
-<div>
+<div class="filters">
 
-<img src="https://picsum.photos/250/150?1">
+<select>
+
+<option>All Locations</option>
+
+<option>Gomti Nagar</option>
+
+<option>Hazratganj</option>
+
+<option>Indira Nagar</option>
+
+<option>Aliganj</option>
+
+</select>
+
+
+<select>
+
+<option>Property Type</option>
+
+<option>Apartment</option>
+
+<option>House</option>
+
+<option>Villa</option>
+
+<option>Studio</option>
+
+</select>
+
+
+<select>
+
+<option>Price Range</option>
+
+<option>Below ₹10,000</option>
+
+<option>₹10,000 - ₹20,000</option>
+
+<option>₹20,000 - ₹30,000</option>
+
+</select>
+
+
+<button class="filter-button"
+onclick="filterProperty()">
+
+Search
+
+</button>
+
+</div>
+
+
+<div class="container">
+
+<div class="property-grid">
+
+
+<!-- PROPERTY 1 -->
+
+<div class="property-card">
+
+<div class="property-img img1">
+
+<span>FEATURED</span>
+
+</div>
+
+<div class="property-info">
+
+<p class="location">
+📍 Gomti Nagar, Lucknow
+</p>
 
 <h3>
-Electronics
+Modern 2 BHK Apartment
 </h3>
+
+<div class="details">
+
+<span>🛏 2 Beds</span>
+
+<span>🚿 2 Baths</span>
+
+<span>📐 1200 sq.ft</span>
+
+</div>
+
+<div class="price">
+
+<strong>₹18,000</strong>
+
+<small>/ month</small>
+
+</div>
+
+<button class="view-btn"
+onclick="propertyAlert('Modern 2 BHK Apartment')">
+
+View Property
+
+</button>
+
+</div>
 
 </div>
 
 
+<!-- PROPERTY 2 -->
 
-<div>
+<div class="property-card">
 
-<img src="https://picsum.photos/250/150?2">
+<div class="property-img img2">
+
+<span>POPULAR</span>
+
+</div>
+
+<div class="property-info">
+
+<p class="location">
+📍 Indira Nagar, Lucknow
+</p>
 
 <h3>
-Fashion
+Luxury Family Home
 </h3>
+
+<div class="details">
+
+<span>🛏 3 Beds</span>
+
+<span>🚿 2 Baths</span>
+
+<span>📐 1800 sq.ft</span>
+
+</div>
+
+<div class="price">
+
+<strong>₹25,000</strong>
+
+<small>/ month</small>
+
+</div>
+
+<button class="view-btn"
+onclick="propertyAlert('Luxury Family Home')">
+
+View Property
+
+</button>
+
+</div>
 
 </div>
 
 
+<!-- PROPERTY 3 -->
 
-<div>
+<div class="property-card">
 
-<img src="https://picsum.photos/250/150?3">
+<div class="property-img img3">
+
+<span>NEW</span>
+
+</div>
+
+<div class="property-info">
+
+<p class="location">
+📍 Aliganj, Lucknow
+</p>
 
 <h3>
-Mobiles
+Cozy 1 BHK Studio
 </h3>
+
+<div class="details">
+
+<span>🛏 1 Bed</span>
+
+<span>🚿 1 Bath</span>
+
+<span>📐 700 sq.ft</span>
+
+</div>
+
+<div class="price">
+
+<strong>₹10,000</strong>
+
+<small>/ month</small>
+
+</div>
+
+<button class="view-btn"
+onclick="propertyAlert('Cozy 1 BHK Studio')">
+
+View Property
+
+</button>
+
+</div>
 
 </div>
 
 
+<!-- PROPERTY 4 -->
 
-<div>
+<div class="property-card">
 
-<img src="https://picsum.photos/250/150?4">
+<div class="property-img img4">
+
+<span>LUXURY</span>
+
+</div>
+
+<div class="property-info">
+
+<p class="location">
+📍 Hazratganj, Lucknow
+</p>
 
 <h3>
-Home
+Premium 3 BHK Villa
 </h3>
 
+<div class="details">
+
+<span>🛏 3 Beds</span>
+
+<span>🚿 3 Baths</span>
+
+<span>📐 2200 sq.ft</span>
+
+</div>
+
+<div class="price">
+
+<strong>₹35,000</strong>
+
+<small>/ month</small>
+
+</div>
+
+<button class="view-btn"
+onclick="propertyAlert('Premium 3 BHK Villa')">
+
+View Property
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- PROPERTY 5 -->
+
+<div class="property-card">
+
+<div class="property-img img5">
+
+<span>AVAILABLE</span>
+
+</div>
+
+<div class="property-info">
+
+<p class="location">
+📍 Mahanagar, Lucknow
+</p>
+
+<h3>
+Beautiful 2 BHK Flat
+</h3>
+
+<div class="details">
+
+<span>🛏 2 Beds</span>
+
+<span>🚿 2 Baths</span>
+
+<span>📐 1100 sq.ft</span>
+
+</div>
+
+<div class="price">
+
+<strong>₹16,000</strong>
+
+<small>/ month</small>
+
+</div>
+
+<button class="view-btn"
+onclick="propertyAlert('Beautiful 2 BHK Flat')">
+
+View Property
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- PROPERTY 6 -->
+
+<div class="property-card">
+
+<div class="property-img img6">
+
+<span>NEW</span>
+
+</div>
+
+<div class="property-info">
+
+<p class="location">
+📍 Gomti Nagar, Lucknow
+</p>
+
+<h3>
+Modern 1 BHK Apartment
+</h3>
+
+<div class="details">
+
+<span>🛏 1 Bed</span>
+
+<span>🚿 1 Bath</span>
+
+<span>📐 800 sq.ft</span>
+
+</div>
+
+<div class="price">
+
+<strong>₹12,000</strong>
+
+<small>/ month</small>
+
+</div>
+
+<button class="view-btn"
+onclick="propertyAlert('Modern 1 BHK Apartment')">
+
+View Property
+
+</button>
+
+</div>
+
 </div>
 
 
 </div>
 
+</div>
 
 </section>
 
 
+<!-- =====================================
+     ABOUT
+===================================== -->
+
+<section id="about" class="about">
+
+<div class="container">
+
+<div class="section">
+
+<div class="about-grid">
+
+<div class="about-image"></div>
 
 
+<div class="about-content">
 
-
-
-
-
-<!-- PRODUCTS -->
-
-
-<section class="products">
-
+<p class="small-title">
+ABOUT LUCKRENT
+</p>
 
 <h2>
-Trending Products
+Making Home Hunting Easy
 </h2>
 
-
-
-
-<div class="product-box">
-
-
-
-
-
-<div class="product">
-
-
-<span class="discount">
-50% OFF
-</span>
-
-
-<img src="https://picsum.photos/250/200?5">
-
-
-
-<h3>
-Wireless Headphone
-</h3>
-
-
-<div class="rating">
-
-⭐⭐⭐⭐⭐
-
-</div>
-
+<p>
+LuckRent is a modern home rental platform created
+to make finding rental properties in Lucknow simple,
+fast and convenient.
+</p>
 
 <p>
-₹999
-<del>
-₹1999
-</del>
-
+From affordable apartments to premium villas,
+we help tenants discover homes in locations they love.
 </p>
 
 
-<button>
-Add To Cart
-</button>
+<div class="check">
 
+<span>✓</span>
 
-<button>
-❤️ Wishlist
-</button>
-
+Verified Properties
 
 </div>
 
 
+<div class="check">
 
+<span>✓</span>
 
-
-
-
-<div class="product">
-
-
-<span class="discount">
-40% OFF
-</span>
-
-
-<img src="https://picsum.photos/250/200?6">
-
-
-
-<h3>
-Smart Watch
-</h3>
-
-
-
-<div class="rating">
-
-⭐⭐⭐⭐
+Best Locations
 
 </div>
 
 
-<p>
-₹1999
+<div class="check">
 
-</p>
+<span>✓</span>
 
-
-
-<button>
-Add To Cart
-</button>
-
-
-<button>
-❤️ Wishlist
-</button>
-
-
+Transparent Pricing
 
 </div>
 
 
+<div class="check">
 
+<span>✓</span>
 
-
-
-
-
-
-<div class="product">
-
-
-<span class="discount">
-30% OFF
-</span>
-
-
-<img src="https://picsum.photos/250/200?7">
-
-
-<h3>
-Laptop
-</h3>
-
-
-
-<div class="rating">
-
-⭐⭐⭐⭐⭐
+Quick Response
 
 </div>
 
-
-<p>
-₹49999
-
-</p>
-
-
-<button>
-Add To Cart
-</button>
-
-
-<button>
-❤️ Wishlist
-</button>
-
-
+</div>
 
 </div>
 
-
-
-
-
 </div>
 
-
+</div>
 
 </section>
 
 
+<!-- =====================================
+     CTA
+===================================== -->
 
+<div class="cta">
 
+<div>
 
-
-
-
-
-<!-- WHY CHOOSE US -->
-
-
-<section class="features">
-
+<p class="small-title">
+READY TO MOVE?
+</p>
 
 <h2>
-Why Choose Us?
+Your New Home Is Waiting
+</h2>
+
+<p>
+Explore our latest rental properties in Lucknow.
+</p>
+
+</div>
+
+<a href="#properties" class="cta-button">
+Explore Properties →
+</a>
+
+</div>
+
+
+<!-- =====================================
+     CONTACT
+===================================== -->
+
+<section id="contact">
+
+<div class="container">
+
+<div class="section">
+
+<div class="contact-grid">
+
+
+<div class="contact-left">
+
+<p class="small-title">
+GET IN TOUCH
+</p>
+
+<h2>
+Let's Find Your Home
+</h2>
+
+<p>
+Have questions about a property?
+Want to list your property?
+Our team is ready to help you.
+</p>
+
+
+<div class="contact-item">
+
+<div class="contact-icon">
+📍
+</div>
+
+<div>
+
+<h4>Office</h4>
+
+<p>
+Basti Vikramjot Talagaon
+</p>
+
+</div>
+
+</div>
+
+
+<div class="contact-item">
+
+<div class="contact-icon">
+📞
+</div>
+
+<div>
+
+<h4>Phone</h4>
+
+<p>
++91 8081597811
+</p>
+
+</div>
+
+</div>
+
+
+<div class="contact-item">
+
+<div class="contact-icon">
+✉️
+</div>
+
+<div>
+
+<h4>Email</h4>
+
+<p>
+abhishekshukla2122@gmail.com
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CONTACT FORM -->
+
+<div class="contact-form">
+
+<h2>
+Send Us A Message
 </h2>
 
 
-<div>
+<form onsubmit="sendMessage(event)">
 
+<div class="form-group">
 
-🚚 Fast Delivery
-
-</div>
-
-
-<div>
-
-🔒 Secure Payment
+<input
+type="text"
+id="name"
+placeholder="Your Name"
+required>
 
 </div>
 
 
+<div class="form-group">
 
-<div>
-
-↩ Easy Return
-
-</div>
-
-
-
-<div>
-
-⭐ Best Quality
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- REVIEWS -->
-
-
-<section class="reviews">
-
-
-<h2>
-Customer Reviews
-</h2>
-
-
-
-<div class="review">
-
-<h3>
-Chinu Shukla
-</h3>
-
-
-<p>
-⭐⭐⭐⭐⭐
-</p>
-
-
-<p>
-Amazing product and fast delivery.
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="review">
-
-
-<h3>
-    Abhishek Shukla
-</h3>
-
-
-<p>
-⭐⭐⭐⭐
-</p>
-
-
-<p>
-Good quality product.
-</p>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-<!-- NEWSLETTER -->
-
-
-<section class="newsletter">
-
-
-<h2>
-Subscribe For Offers
-</h2>
-
-
-
-<input 
+<input
 type="email"
-placeholder="Enter Email">
+id="email"
+placeholder="Email Address"
+required>
+
+</div>
 
 
-<button>
-Subscribe
+<div class="form-group">
+
+<input
+type="tel"
+id="phone"
+placeholder="Phone Number"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<select required>
+
+<option value="">
+Select Enquiry
+</option>
+
+<option>
+I want to rent a property
+</option>
+
+<option>
+I want to list my property
+</option>
+
+<option>
+Property information
+</option>
+
+<option>
+Other
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<textarea
+rows="5"
+placeholder="Write your message..."
+required></textarea>
+
+</div>
+
+
+<button class="form-button"
+type="submit">
+
+Send Message →
+
 </button>
 
+</form>
 
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
-
-
-
-
-
-
-<!-- APP -->
-
-
-<section class="app-banner">
-
-
-<h2>
-Download Amazon App
-</h2>
-
-
-<p>
-Shop anytime anywhere
-</p>
-
-
-<button>
-Download Now
-</button>
-
-
-</section>
-
-
-
-
-
-
-
-
-<!-- FOOTER -->
-
+<!-- =====================================
+     FOOTER
+===================================== -->
 
 <footer>
 
+<div class="footer-grid">
 
 
 <div>
 
-
-<h3>
-Get To Know Us
-</h3>
-
+<h2 class="logo">
+Luck<span>Rent</span>
+</h2>
 
 <p>
-About Us
+Find comfortable, affordable and
+beautiful homes across Lucknow.
 </p>
 
-
-<p>
-Careers
-</p>
+</div>
 
 
-<p>
+<div class="footer-links">
+
+<h4>
+Quick Links
+</h4>
+
+<a href="#home">
+Home
+</a>
+
+<a href="#properties">
+Properties
+</a>
+
+<a href="#about">
+About
+</a>
+
+<a href="#contact">
 Contact
-</p>
-
+</a>
 
 </div>
-
-
 
 
 <div>
 
-
-<h3>
-Connect With Us
-</h3>
-
+<h4>
+Contact
+</h4>
 
 <p>
-Facebook
+📍 Basti Vikarmjot Talagaon
 </p>
-
 
 <p>
-Instagram
+📞 +91 8081597811
 </p>
-
 
 <p>
-Twitter
+✉ abhishekshukla2122@gmail.com
 </p>
+
+</div>
 
 
 </div>
 
 
+<div class="copyright">
 
-
-
-<div>
-
-
-<h3>
-Make Money
-</h3>
-
-
-<p>
-Sell Products
-</p>
-
-
-<p>
-Become Seller
-</p>
-
+© 2026 LuckRent.
+All Rights Reserved.
 
 </div>
-
-
 
 </footer>
 
 
+<!-- =====================================
+     JAVASCRIPT
+===================================== -->
+
+<script>
+
+/* SEARCH */
+
+function searchProperty(){
+
+    document
+    .getElementById("properties")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
 
 
+/* FILTER */
+
+function filterProperty(){
+
+    alert(
+        "Properties found! Choose a property from the list."
+    );
+
+}
 
 
+/* PROPERTY BUTTON */
+
+function propertyAlert(propertyName){
+
+    alert(
+        "You selected: " +
+        propertyName +
+        "\n\nOur team will contact you for more information."
+    );
+
+}
+
+
+/* CONTACT FORM */
+
+function sendMessage(event){
+
+    event.preventDefault();
+
+    let name =
+    document.getElementById("name").value;
+
+    alert(
+        "Thank you, " +
+        name +
+        "!\n\nYour message has been submitted successfully."
+    );
+
+    event.target.reset();
+
+}
+
+
+/* SCROLL ANIMATION */
+
+const cards =
+document.querySelectorAll(".property-card");
+
+const observer =
+new IntersectionObserver(
+(entries) => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+            entry.target.style.opacity = "1";
+
+            entry.target.style.transform =
+            "translateY(0)";
+
+        }
+
+    });
+
+},
+{
+    threshold:0.15
+});
+
+
+cards.forEach(card => {
+
+    card.style.opacity = "0";
+
+    card.style.transform =
+    "translateY(30px)";
+
+    card.style.transition =
+    "opacity .7s ease, transform .7s ease";
+
+    observer.observe(card);
+
+});
+
+</script>
 
 </body>
-
 </html>
