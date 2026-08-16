@@ -1,5 +1,4 @@
 # 🏠 LuckRent — Home Rental Website
-
 A modern and responsive **home rental website for Lucknow**, designed to make finding rental properties simple, fast, and convenient.
 
 ## 🌐 Project Overview
